@@ -1,5 +1,8 @@
 int main(){
  	Deck deck = Deck();
+  print(deck);
+  deck.shuffle();
+  print(deck);
   return 0; 
 }
 
@@ -19,6 +22,10 @@ class Deck {
     }
     cards.shuffle();
     this.cards = cards;
+  }
+
+  void shuffle(){
+    cards.shuffle();
   }
 
   @override
