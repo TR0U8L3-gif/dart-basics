@@ -3,6 +3,9 @@ int main(){
   print(deck);
   deck.shuffle();
   print(deck);
+  print(deck.cards.length);
+  print(deck.deal(handSize: 5));
+	print(deck.cards.length);
   return 0; 
 }
 
@@ -27,6 +30,21 @@ class Deck {
   void shuffle(){
     cards.shuffle();
   }
+
+  List<Card> cardsWithSuit({required String suit}){
+    return cards.where((card) => card.suit == suit).toList();
+  }
+
+  List<Card> deal({required int handSize}){
+    var hand = cards.sublist(0,handSize);
+    cards = cards.sublist(handSize);
+    return hand;
+  }
+
+  void removeCard({required String suit, required String rank}){
+    cards.removeWhere((card) => card.suit == suit && card.rank == rank);
+  }
+  
 
   @override
   String toString() {
