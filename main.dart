@@ -20,6 +20,15 @@ class Deck {
     cards.shuffle();
     this.cards = cards;
   }
+
+  @override
+  String toString() {
+    String result = "";
+    for(int i = 0; i < cards.length; i++){
+      result += "card[$i]: ${cards[i]}\n";
+    }
+    return result;
+  }
 }
 
 class Card {
@@ -27,4 +36,9 @@ class Card {
   String rank;
 
   Card({required this.suit, required this.rank});
+
+  @override
+  String toString() {
+    return "$suit $rank";
+  }
 }
