@@ -1,1 +1,0 @@
-## Lesson 2: Dynamic and Static arrays
