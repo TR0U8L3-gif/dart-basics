@@ -1,3 +1,6 @@
+import 'package:bloc_pattern_from_scratch/bloc/counter_event.dart';
+
+import 'bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,19 +32,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // using setState we need to decrale variable an dfunctions
+  //
+  // int _counter = 0;
+  //
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
+  //
+  // void _decrementCounter() {
+  //   setState(() {
+  //     _counter--;
+  //   });
+  // }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
+  final _counterBloc = CounterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +64,18 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            // Using setState we declare variable in widget, using bloc we operate with streams
+            //
+            // Text(
+            //   '$_counter',
+            //   style: Theme.of(context).textTheme.headlineMedium,
+            // ),
+            StreamBuilder(
+                stream: _counterBloc.counter,
+                builder: (context, snapshot) => Text(
+                      "${snapshot.data ?? 0}",
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    )),
           ],
         ),
       ),
@@ -68,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: _incrementCounter,
+            //onPressed: _incrementCounter,
+            onPressed: () => _counterBloc.counterEventSink.add(IncrementEvent()),
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
@@ -76,12 +92,19 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 12,
           ),
           FloatingActionButton(
-            onPressed: _decrementCounter,
+            //onPressed: _decrementCounter,
+            onPressed: () => _counterBloc.counterEventSink.add(DecrementEvent()),
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _counterBloc.dispose();
   }
 }

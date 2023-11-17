@@ -1,16 +1,10 @@
-# bloc_pattern_from_scratch
 
-A new Flutter project.
+# Simple BLoC Pattern Implementation
 
-## Getting Started
+## Project Description
 
-This project is a starting point for a Flutter application.
+This project aims to implement the BLoC (Business Logic Component) pattern in a basic "flutter create" app without using external libraries to better understand the principles behind this architectural pattern.
 
-A few resources to get you started if this is your first Flutter project:
+**Why?**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+BLoC is a commonly used architectural pattern in Flutter applications for state management and handling business logic
